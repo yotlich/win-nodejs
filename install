@@ -47,6 +47,6 @@ if (!(";${Path};".ToLower() -like "*;${BinDir};*".ToLower())) {
     Write-Output "Added ${BinDir} to User Path"
 }
 
-./npm install -g npm@latest
+powershell -executionpolicy bypass ./npm install -g npm@latest
 
 Pop-Location
