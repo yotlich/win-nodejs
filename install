@@ -1,0 +1,52 @@
+$ErrorActionPreference = 'Stop'
+
+$BinDir = "${Home}\.nodejs"
+if ($Args.Length -eq 1) {
+    $BinDir = $Args.Get(0)
+}
+
+$DistTarget = 'win-x64.zip'
+if ($target) {
+    $DistTarget = $target
+}
+
+if (!(Test-Path $BinDir)) {
+    New-Item $BinDir -ItemType Directory | Out-Null
+}
+$BinDir = Resolve-Path $BinDir
+
+Push-Location -Path $BinDir
+
+$LatestLtsCodename = (
+    (Invoke-RestMethod 'https://raw.githubusercontent.com/nodejs/Release/main/schedule.json').PSObject.Properties | 
+        Where-Object { [datetime]$_.Value.end -ge (Get-Date) } | 
+        Where-Object { $_.Value.lts -and [datetime]$_.Value.lts -le (Get-Date) } | 
+        Sort-Object { $_.Value.start } -Descending | Select-Object -First 1
+).Value.codename.ToLower()
+$LatestLtsVersion = (
+    (Invoke-RestMethod 'https://nodejs.org/dist/index.json') |
+        Where-Object { $_.lts -eq $LatestLtsCodename } |
+        Sort-Object { $_.date } -Descending | Select-Object -First 1
+).version
+$NodeDist = "node-${LatestLtsVersion}-${DistTarget}"
+
+Write-Output "NodeJS Latest LTS: ${LatestLtsCodename}-${LatestLtsVersion}"
+curl.exe -O "https://nodejs.org/dist/latest-${LatestLtsCodename}/${NodeDist}"
+
+Write-Output "Unpacking ${NodeDist}"
+tar.exe xf $NodeDist --strip-components=1 -C .
+Remove-Item $NodeDist
+
+Write-Output "Successfully installed in ${BinDir}"
+
+$User = [System.EnvironmentVariableTarget]::User
+$Path = [System.Environment]::GetEnvironmentVariable('Path', $User)
+if (!(";${Path};".ToLower() -like "*;${BinDir};*".ToLower())) {
+    [System.Environment]::SetEnvironmentVariable('Path', "${Path};${BinDir}", $User)
+    $Env:Path += ";${BinDir}"
+    Write-Output "Added ${BinDir} to User Path"
+}
+
+./npm install -g npm@latest
+
+Pop-Location
