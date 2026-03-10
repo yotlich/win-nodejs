@@ -14,7 +14,7 @@ irm https://raw.githubusercontent.com/yotlich/win-nodejs/main/scripts/install.ps
   - `-BinDir $Home\.nodejs` — destination path to install
   - `-Version lts` — version (`latest`, `krypton`, `24`, `24.14.0`) to install
   - `-Update` — overwrite the destination folder if it already exists
-  - `-NoAddToPath` — add destination path to UserPath
+  - `-NoAddToPath` — don't add destination path to UserPath
 
 ```powershell
 iex "& { $(irm 'https://raw.githubusercontent.com/yotlich/win-nodejs/main/scripts/install.ps1') } -BinDir .\node -Version latest -Update -NoAddToPath"
