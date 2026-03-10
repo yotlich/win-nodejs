@@ -22,6 +22,8 @@ iex "& { $(irm 'https://raw.githubusercontent.com/yotlich/win-nodejs/main/script
 
 ### Uninstall using PowerShell
 
+- Delete NodeJS and clean all configuration files:
+
 ```powershell
 irm https://raw.githubusercontent.com/yotlich/win-nodejs/main/scripts/uninstall.ps1 | iex
 ```
