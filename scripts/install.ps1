@@ -91,7 +91,7 @@ if (!$NoAddToPath) {
         $Path = $Dirs -join ';'
         $Path += ';'
         [System.Environment]::SetEnvironmentVariable('Path', $Path, $User)
-        $Env:Path += ";$Path"
+        $env:Path += ";$BinDir"
         Remove-Item $BinDir\npm.ps1 -ErrorAction Ignore
         Remove-Item $BinDir\npx.ps1 -ErrorAction Ignore
         Remove-Item $BinDir\install_tools.bat -ErrorAction Ignore
