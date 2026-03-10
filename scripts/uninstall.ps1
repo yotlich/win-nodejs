@@ -57,7 +57,6 @@ if (";$Path;".ToLower() -like "*;$BinDir;*".ToLower()) {
     $Path = $Dirs -join ';'
     $Path += ';'
     [System.Environment]::SetEnvironmentVariable('Path', $Path, $User)
-    $Env:Path = $Path
     Write-Host "Removed $BinDir from UserPath"
 }
 
