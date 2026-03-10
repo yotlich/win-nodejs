@@ -4,7 +4,7 @@
 
 ### Installation using PowerShell
 
-- Install latest lts version on `$Home\.nodejs`:
+- Install latest lts version at `$Home\.nodejs`, and add it to UserPath:
 
 ```powershell
 irm https://raw.githubusercontent.com/yotlich/win-nodejs/main/scripts/install.ps1 | iex
