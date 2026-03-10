@@ -4,7 +4,7 @@
 
 ### Installation using PowerShell
 
-- Install or update latest lts version on `$Home\.nodejs`:
+- Install latest lts version on `$Home\.nodejs`:
 
 ```powershell
 irm https://raw.githubusercontent.com/yotlich/win-nodejs/main/scripts/install.ps1 | iex
@@ -22,7 +22,7 @@ iex "& { $(irm 'https://raw.githubusercontent.com/yotlich/win-nodejs/main/script
 
 ### Uninstall using PowerShell
 
-- Delete NodeJS and clean all configuration files:
+- Delete current installation, also clean all related files:
 
 ```powershell
 irm https://raw.githubusercontent.com/yotlich/win-nodejs/main/scripts/uninstall.ps1 | iex
