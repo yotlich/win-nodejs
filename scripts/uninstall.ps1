@@ -20,6 +20,8 @@ if (Test-Path $BinDir\npm*) {
     "$env:LOCALAPPDATA\npm",
     "$env:APPDATA\npm-cache",
     "$env:LOCALAPPDATA\npm-cache",
+    "$env:APPDATA\node-gyp",
+    "$env:LOCALAPPDATA\node-gyp",
     "$env:USERPROFILE\.node-gyp"
 ) | ForEach-Object {
     if (Test-Path $_) {

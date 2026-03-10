@@ -92,9 +92,6 @@ if (!$NoAddToPath) {
         $Path += ';'
         [System.Environment]::SetEnvironmentVariable('Path', $Path, $User)
         $env:Path += ";$BinDir"
-        Remove-Item $BinDir\npm.ps1 -ErrorAction Ignore
-        Remove-Item $BinDir\npx.ps1 -ErrorAction Ignore
-        Remove-Item $BinDir\install_tools.bat -ErrorAction Ignore
         Write-Output "Added $BinDir to UserPath"
     }
     else {
