@@ -22,7 +22,7 @@ iex "& { $(irm 'https://raw.githubusercontent.com/yotlich/win-nodejs/main/script
 
 ### Uninstall using PowerShell
 
-- Delete current installation, also clean all related files:
+- Delete current installation, and clean all related files (including configs):
 
 ```powershell
 irm https://raw.githubusercontent.com/yotlich/win-nodejs/main/scripts/uninstall.ps1 | iex
